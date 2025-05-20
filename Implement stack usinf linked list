@@ -1,0 +1,44 @@
+class List {
+public:
+    int size;
+    Node* top;
+
+    List() {
+        size = 0;
+        top = NULL;
+    }
+
+    void push(int x) {
+        Node* temp = new Node(x);
+        temp->next = top;
+        top = temp;
+        size++;
+    }
+
+    void pop() {
+        if (top == NULL) {
+            cout << "Stack is empty! Cannot pop." << endl;
+            return;
+        }
+        Node* temp = top;
+        top = top->next;
+        delete temp;
+        size--;
+    }
+
+    int Top() {
+        if (top == NULL) {
+            cout << "Stack is empty!" << endl;
+            return -1; // or throw an exception
+        }
+        return top->data;
+    }
+
+    int Size() {
+        return size;
+    }
+
+    bool isEmpty() {
+        return top == NULL;
+    }
+};
