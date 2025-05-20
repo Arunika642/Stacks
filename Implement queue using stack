@@ -1,0 +1,37 @@
+class MyQueue {
+public:
+    stack<int> st1;
+    stack<int> st2;
+    MyQueue() {
+        
+    }
+    
+    void push(int x) {
+        int s = st1.size();
+        for(int i=1; i<=s;i++)
+        {
+            st2.push(st1.top());
+            st1.pop();
+        }
+        st1.push(x);
+        for(int i=1; i<=st2.size();i++)
+        {
+            st1.push(st2.top());
+            st2.pop();
+        }
+    }
+    
+    int pop() {
+        int front = st1.top();
+        st1.pop();
+        return front;
+    }
+    
+    int peek() {
+        return st1.top();
+    }
+    
+    bool empty() {
+        return st1.empty();
+    }
+};
