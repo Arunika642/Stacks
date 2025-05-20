@@ -1,0 +1,48 @@
+class ql
+{
+    int size = 0;
+    Node* start;
+    Node* end;
+    
+    void push(int x)
+    {
+        Node* temp = new Node(x);
+        if(start == NULL && end == NULL)
+        {
+            start = temp;
+            end = temp;
+        }
+        else
+        {
+            end->next = temp;
+            end = temp;
+        }
+        size++;
+    }
+    void pop()
+    {
+        if(start == NULL)
+        {
+            cout << "No element to pop: " << endl;
+            return;
+        }
+        Node* temp = start;
+        start = start->next;
+        delete temp;
+        size--;
+    }
+    int top ()
+    {
+        if(start == NULL)
+        {
+            cout << "No top element" << endl;
+            return;
+        }
+        return start->data;
+    }
+    
+    int Size()
+    {
+        return size;
+    }
+}
