@@ -1,0 +1,57 @@
+class MinStack {
+public:
+
+    stack<long long> st;
+    long long currentMin;
+    MinStack() {
+        currentMin = LLONG_MAX;
+    }
+
+    void push(int val) {
+        long long v = val;
+        if(st.empty())
+        {
+            st.push(v);
+            currentMin = v;
+        }
+        else if(v>currentMin)
+        {
+            st.push(v);
+        }
+        else
+        {
+            st.push(2*v - currentMin);
+            currentMin = v;
+        }
+    }
+
+    void pop() {
+        if(st.empty())
+        {
+            currentMin = LLONG_MAX;
+            return;
+        }
+        long long x = st.top();
+        st.pop();
+        if(x<currentMin)
+        {
+            currentMin = 2*currentMin - x;
+        }
+    }
+
+    int top() {
+        if(st.empty()) return -1;
+        if(st.top()<currentMin)
+        {
+            return currentMin;
+        }
+        else
+        {
+            return st.top();
+        }
+    }
+    int getMin() {
+        if(st.empty()) return -1;
+        return currentMin;
+    }
+};
